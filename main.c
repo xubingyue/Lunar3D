@@ -42,8 +42,6 @@ int main(int argc, char *argv[]){
 		//delta time
 		deltatime();
 
-		//checkInputs();
-
 		glfwGetWindowSize(window, &width, &height);
 		glViewport(0, 0, width, height);
 
@@ -83,44 +81,6 @@ int main(int argc, char *argv[]){
 	glfwTerminate();
 	return 0;
 }
-
-/**void checkInputs(){
-    if(glfwGetKey(window, GLFW_KEY_W)){
-        cz += cos(cry / 180 * 3.14) * dt * 5;
-        cx -= sin(cry / 180 * 3.14) * dt * 5;
-    }
-    if(glfwGetKey(window, GLFW_KEY_S)){
-        cz -= cos(cry / 180 * 3.14) * dt * 5;
-        cx += sin(cry / 180 * 3.14) * dt * 5;
-    }
-    if(glfwGetKey(window, GLFW_KEY_A)){
-        cz -= -sin(cry / 180 * 3.14) * dt * 5;
-        cx += cos(cry / 180 * 3.14) * dt * 5;
-    }
-    if(glfwGetKey(window, GLFW_KEY_D)){
-        cz += -sin(cry / 180 * 3.14) * dt * 5;
-        cx -= cos(cry / 180 * 3.14) * dt * 5;
-    }
-    if(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)){
-        cy -= dt * 5;
-    }
-    if(glfwGetKey(window,GLFW_KEY_LEFT_CONTROL)){
-        cy += dt * 5;
-    }
-
-    if(glfwGetKey(window, GLFW_KEY_UP)){
-        crx -= dt * 100;
-    }
-    if(glfwGetKey(window, GLFW_KEY_DOWN)){
-        crx += dt * 100;
-    }
-    if(glfwGetKey(window, GLFW_KEY_LEFT)){
-        cry -= dt * 100;
-    }
-    if(glfwGetKey(window, GLFW_KEY_RIGHT)){
-        cry += dt * 100;
-    }
-}**/
 
 void deltatime(){
 	currentFrame = glfwGetTime();

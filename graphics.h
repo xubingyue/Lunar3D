@@ -9,6 +9,8 @@
 //GLFW Libraries
 #include <GLFW/glfw3.h>
 
+#include <math.h>
+
 const GLfloat cubevertices[72], cubenormals[72], cubecolors[72];
 const GLubyte cubeindices[36];
 
@@ -29,6 +31,13 @@ int l_graphics_setcameraposition();
 int l_graphics_getcameraposition();
 int l_graphics_setcameraangle();
 int l_graphics_getcameraangle();
+
+//Coordinate System Manipulation - shameless plug
+int l_graphics_push();
+int l_graphics_pop();
+int l_graphics_rotate();
+int l_graphics_scale();
+int l_graphics_translate();
 
 //Object Creation
 int l_graphics_newmodel();

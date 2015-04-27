@@ -55,6 +55,10 @@ GLfloat crx = 0;
 GLfloat cry = 0;
 GLfloat crz = 0;
 
+GLfloat orx = 0;
+GLfloat ory = 0;
+GLfloat orz = 0;
+
 //lunar.graphics.drawQuad(x, y, z, width, height)
 int l_graphics_drawquad(lua_State *L){
 	float x = lua_tonumber(L, -5);
@@ -97,8 +101,11 @@ int l_graphics_drawcube(lua_State *L){
 	glVertexPointer(3, GL_FLOAT, 0, cubevertices);
 
 	glPushMatrix();
-	glTranslatef(x, y, z);
 	glScalef(size / 2, size / 2, size / 2);
+	glTranslatef(x, y, z);
+	glRotatef(orx, 1, 0, 0);
+	glRotatef(ory, -sin(orz), cos(orz), 0);
+	glRotatef(orz, 0, 0, 1);
 
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, cubeindices);
 
@@ -107,6 +114,11 @@ int l_graphics_drawcube(lua_State *L){
 	glDisableClientState(GL_VERTEX_ARRAY);
 	//glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_NORMAL_ARRAY);
+
+	//Clean up rotation data for next object
+	orx = 0;
+	ory = 0;
+	orz = 0;
 
 	return 0;
 }
@@ -141,6 +153,44 @@ int l_graphics_getcameraangle(lua_State *L){
 	lua_pushnumber(L, cry);
 	lua_pushnumber(L, crz);
 	return 3;
+}
+
+//lunar.graphics.push()
+int l_graphics_push(lua_State *L){
+	glPushMatrix();
+	return 0;
+}
+
+//lunar.graphics.pop()
+int l_graphics_pop(lua_State *L){
+	glPopMatrix();
+	return 0;
+}
+
+//lunar.graphics.rotate(x, y, z)
+int l_graphics_rotate(lua_State *L){
+	orx = lua_tonumber(L, -3);
+	ory = lua_tonumber(L, -2);
+	orz = lua_tonumber(L, -1);
+	return 0;
+}
+
+//lunar.graphics.scale(sx, xy, sz)
+int l_graphics_scale(lua_State *L){
+	GLfloat x = lua_tonumber(L, -3);
+	GLfloat y = lua_tonumber(L, -2);
+	GLfloat z = lua_tonumber(L, -1);
+	glScalef(x, y, z);
+	return 0;
+}
+
+//lunar.graphics.translate(x, y, z)
+int l_graphics_translate(lua_State *L){
+	GLdouble x = lua_tonumber(L, -3);
+	GLdouble y = lua_tonumber(L, -2);
+	GLdouble z = lua_tonumber(L, -1);
+	glTranslated(x, y, z);
+	return 0;
 }
 
 //lunar.graphics.setColor(r, g, b)

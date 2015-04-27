@@ -46,6 +46,26 @@ void addCLuaFunctions(lua_State *L){
 	lua_pushcfunction(L, l_graphics_getcameraangle);
 	lua_settable(L, -3);
 
+	lua_pushstring(L, "push");
+	lua_pushcfunction(L, l_graphics_push);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "pop");
+	lua_pushcfunction(L, l_graphics_pop);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "rotate");
+	lua_pushcfunction(L, l_graphics_rotate);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "scale");
+	lua_pushcfunction(L, l_graphics_scale);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "translate");
+	lua_pushcfunction(L, l_graphics_translate);
+	lua_settable(L, -3);
+
 	lua_pushstring(L, "setColor");
 	lua_pushcfunction(L, l_graphics_setcolor);
 	lua_settable(L, -3);
