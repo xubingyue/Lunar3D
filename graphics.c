@@ -47,6 +47,14 @@ GLubyte br = 0;
 GLubyte bg = 0;
 GLubyte bb = 0;
 
+GLfloat cx = 0;
+GLfloat cy = 0;
+GLfloat cz = 0;
+
+GLfloat crx = 0;
+GLfloat cry = 0;
+GLfloat crz = 0;
+
 //lunar.graphics.drawQuad(x, y, z, width, height)
 int l_graphics_drawquad(lua_State *L){
 	float x = lua_tonumber(L, -5);
@@ -101,6 +109,38 @@ int l_graphics_drawcube(lua_State *L){
 	glDisableClientState(GL_NORMAL_ARRAY);
 
 	return 0;
+}
+
+//lunar.graphics.setCameraPosition(x, y, z)
+int l_graphics_setcameraposition(lua_State *L){
+	cx = lua_tonumber(L, -3);
+	cy = lua_tonumber(L, -2);
+	cz = lua_tonumber(L, -1);
+	return 0;
+}
+
+//lunar.graphics.getCameraPosition()
+int l_graphics_getcameraposition(lua_State *L){
+	lua_pushnumber(L, cx);
+	lua_pushnumber(L, cy);
+	lua_pushnumber(L, cz);
+	return 3;
+}
+
+//lunar.graphics.setCameraAngle(rx, ry, rz)
+int l_graphics_setcameraangle(lua_State *L){
+	crx = lua_tonumber(L, -3);
+	cry = lua_tonumber(L, -2);
+	crz = lua_tonumber(L, -1);
+	return 0;
+}
+
+//lunar.graphics.getCameraAngle()
+int l_graphics_getcameraangle(lua_State *L){
+	lua_pushnumber(L, crx);
+	lua_pushnumber(L, cry);
+	lua_pushnumber(L, crz);
+	return 3;
 }
 
 //lunar.graphics.setColor(r, g, b)

@@ -42,9 +42,7 @@ int main(int argc, char *argv[]){
 		//delta time
 		deltatime();
 
-		checkInputs();
-		//camera(cx, cy, cz, crx, cry, crz);
-		//camera(z, 0, 0, 0, 0, 0);
+		//checkInputs();
 
 		glfwGetWindowSize(window, &width, &height);
 		glViewport(0, 0, width, height);
@@ -86,7 +84,7 @@ int main(int argc, char *argv[]){
 	return 0;
 }
 
-void checkInputs(){
+/**void checkInputs(){
     if(glfwGetKey(window, GLFW_KEY_W)){
         cz += cos(cry / 180 * 3.14) * dt * 5;
         cx -= sin(cry / 180 * 3.14) * dt * 5;
@@ -122,7 +120,7 @@ void checkInputs(){
     if(glfwGetKey(window, GLFW_KEY_RIGHT)){
         cry += dt * 100;
     }
-}
+}**/
 
 void deltatime(){
 	currentFrame = glfwGetTime();
