@@ -59,6 +59,10 @@ GLfloat orx = 0;
 GLfloat ory = 0;
 GLfloat orz = 0;
 
+float trx = 0;
+float try = 0;
+float trz = 0;
+
 //lunar.graphics.drawQuad(x, y, z, width, height)
 int l_graphics_drawquad(lua_State *L){
 	float x = lua_tonumber(L, -5);
@@ -102,10 +106,15 @@ int l_graphics_drawcube(lua_State *L){
 
 	glPushMatrix();
 	glScalef(size / 2, size / 2, size / 2);
-	glTranslatef(x, y, z);
+	glTranslatef(0, 0, 0);
 	glRotatef(orx, 1, 0, 0);
-	glRotatef(ory, -sin(orz), cos(orz), 0);
+	glRotatef(ory, 0, 1, 0);
 	glRotatef(orz, 0, 0, 1);
+	glTranslatef(x, y, z);
+	//glRotatef(orx, 1, 0, 0);
+	//glRotatef(ory, -sin(orz), cos(orz), 0);
+	//glRotatef(orz, 0, 0, 1);
+	//glRotatef(rota->angle, rota->x, rota->y, rota->z);
 
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, cubeindices);
 
@@ -116,9 +125,9 @@ int l_graphics_drawcube(lua_State *L){
 	glDisableClientState(GL_NORMAL_ARRAY);
 
 	//Clean up rotation data for next object
-	orx = 0;
-	ory = 0;
-	orz = 0;
+	//orx = 0;
+	//ory = 0;
+	//orz = 0;
 
 	return 0;
 }
@@ -172,6 +181,8 @@ int l_graphics_rotate(lua_State *L){
 	orx = lua_tonumber(L, -3);
 	ory = lua_tonumber(L, -2);
 	orz = lua_tonumber(L, -1);
+	//quaternion_new_set_fromeuler(rotq, orx, ory, orz);
+	//quaternion_getaxisangle(rotq, rota);
 	return 0;
 }
 
@@ -226,3 +237,23 @@ int l_graphics_getbackgroundcolor(lua_State *L){
 	lua_pushnumber(L, bb * 255);
 	return 3;
 }
+
+/**void wasd(float dt){
+	//trx += 0.001f * dt;
+	trx = 180.2;
+	quaternion_new_set_fromeuler(rotq, trx, try, trz);
+	quaternion_getaxisangle(rotq, rota);
+	//quaternion_print(rotq);
+	printf("AxisAngle: [%f, %f, %f, %f]\n", rota->angle, rota->x, rota->y, rota->z);
+}**/
+
+//////////////////////////////////////////////////////
+/**void l_graphics_initialize(){
+	rotq = quaternion();
+	rota = axisangle();
+}
+
+void l_graphics_shutdown(){
+	free(rota);
+	free(rotq);
+}**/

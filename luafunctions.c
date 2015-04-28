@@ -95,4 +95,12 @@ void addCLuaFunctions(lua_State *L){
 	lua_settable(L, -3); //push keyboard library onto lunar stack
 
 	lua_setglobal(L, "lunar");
+
+	//Call the initialization function of the lua libraries
+	//l_graphics_initialize();
+}
+
+void luafunctions_shutdown(){
+	//Call the shutdown functions of all other lua libraries so they can deallocate heap memory
+	//l_graphics_shutdown();
 }
