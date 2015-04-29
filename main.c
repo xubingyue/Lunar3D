@@ -71,8 +71,8 @@ int main(int argc, char *argv[]){
 		lua_pushstring(L, "update");
 		lua_gettable(L, -2);
 
-		lua_pushnumber(L, dt);
-		lua_pcall(L, 1, 0, 0);
+		//lua_pushnumber(L, dt);
+		lua_pcall(L, 0, 0, 0);
 
 		//call draw function
 		lua_getglobal(L, "lunar");
