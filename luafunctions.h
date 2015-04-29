@@ -7,3 +7,4 @@
 #include "lunar.h"
 #include "graphics.h"
 #include "keyboard.h"
+#include "luautils.h"

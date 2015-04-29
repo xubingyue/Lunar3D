@@ -58,5 +58,20 @@ void addCLuaFunctions(lua_State *L){
 
 	lua_settable(L, -3); //push keyboard library onto lunar stack
 
+	//lunar.utils
+	lua_pushstring(L, "utils");
+	lua_newtable(L);
+
+	//lunar.utils functions
+	lua_pushstring(L, "stringSplit");
+	lua_pushcfunction(L, l_string_split);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "print");
+	lua_pushcfunction(L, l_utils_print);
+	lua_settable(L, -3);
+
+	lua_settable(L, -3); //push utils library onto lunar stack
+
 	lua_setglobal(L, "lunar");
 }
