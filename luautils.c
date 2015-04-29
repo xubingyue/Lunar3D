@@ -38,10 +38,8 @@ int l_string_split(lua_State *L) {
 
 // lunar.utils.print(str)
 int l_utils_print(lua_State *L) {
-	//char *str = lua_tostring(L, -1);
+	char *str = lua_tostring(L, -1);
 
-	luaL_checktype(L, -1, LUA_TTABLE);
-
-	//printf("%s", str);
+	printf("%s", str);
 	return 0;
 }
