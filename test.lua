@@ -15,6 +15,25 @@ a = lunar.drawable.new()
 a:set(2)
 print(a:get())
 
+function lunar.load()
+	local bob = lunar.utils.stringSplit("hi_ho_he", "_")
+	local beb = lunar.utils.stringSplit("he_hi_ho", "_")
+	
+	local bobstr = ""
+	local bebstr = ""
+	
+	for i, v in ipairs(bob) do
+		bobstr = bobstr .. v .. " "
+	end
+	
+	for i, v in ipairs(beb) do
+		bebstr = bebstr .. v .. " "
+	end
+	
+	print("Bob split = " .. bobstr)
+	print("Beb split = " .. bebstr)
+end
+
 function lunar.update(dt)
 	if lunar.keyboard.isDown("w") then
         z = z + math.cos(ry / 180 * math.pi) * dt * ms
