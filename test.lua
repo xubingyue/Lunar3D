@@ -1,7 +1,7 @@
 function lunar.load()
 	local bob = lunar.utils.stringSplit("hi_ho_he", "_")
-	local beb = lunar.utils.stringSplit("hi_ho_he", "_")
-	print(beb[2])
+	local beb = lunar.utils.stringSplit("he_hi_ho", "_")
+	print(beb[1])
 end
 
 function lunar.update(dt)
