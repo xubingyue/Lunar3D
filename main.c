@@ -38,6 +38,12 @@ int main(int argc, char *argv[]){
 
 	lastFrame = glfwGetTime();
 
+	lua_getglobal(L, "lunar");
+	lua_pushstring(L, "load");
+	lua_gettable(L, -2);
+
+	lua_pcall(L, 0, 0, 0);
+
 	while(!glfwWindowShouldClose(window)){
 		//delta time
 		deltatime();
