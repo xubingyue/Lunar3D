@@ -96,6 +96,9 @@ void addCLuaFunctions(lua_State *L){
 
 	lua_setglobal(L, "lunar");
 
+	//initialise types
+	l_opentypes(L);
+
 	//Call the initialization function of the lua libraries
 	//l_graphics_initialize();
 }

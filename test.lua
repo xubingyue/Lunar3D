@@ -8,7 +8,12 @@ local ry = 0.0
 local rz = 0.0
 
 crx = 0.0
+cry = 0.0
 crz = 0.0
+
+a = lunar.drawable.new()
+a:set(2)
+print(a:get())
 
 function lunar.update(dt)
 	if lunar.keyboard.isDown("w") then
@@ -47,7 +52,8 @@ function lunar.update(dt)
     end
 	
 	if lunar.keyboard.isDown("p") then
-		crz = crz + dt
+		crx = crx + dt * 40
+		crz = crz + dt * 30
 	end
 	
 	lunar.graphics.setCameraPosition(x, y, z)
@@ -61,12 +67,9 @@ function lunar.draw()
 	lunar.graphics.setColor(0, 255, 0)
 	lunar.graphics.drawCube(0, 4, 0, 1.7)
 	
-	lunar.graphics.push()
-	lunar.graphics.rotate(crz, crz, 0)
+	lunar.graphics.rotate(crx, cry, crz)
 	lunar.graphics.setColor(0, 0, 255)
 	lunar.graphics.drawCube(-3, 0, 0.2, 0.8)
-	lunar.graphics.pop()
-	
 	lunar.graphics.rotate(0, 0, 0)
 	
 	lunar.graphics.setColor(255, 255, 0)

@@ -43,6 +43,7 @@ int l_graphics_translate();
 
 //Object Creation
 int l_graphics_newmodel();
+int l_graphics_newicosphere();
 
 //Memory deallocation and shutdown
 void l_graphics_shutdown();

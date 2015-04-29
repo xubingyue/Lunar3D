@@ -180,6 +180,13 @@ int l_graphics_translate(lua_State *L){
 	return 0;
 }
 
+//lunar.graphics.newIcosphere(iterations)
+int l_graphics_newicosphere(lua_State *L){
+	unsigned int res = lua_tonumber(L, -1);
+
+	return 0;
+}
+
 //lunar.graphics.setColor(r, g, b)
 int l_graphics_setcolor(lua_State *L){
 	r = lua_tonumber(L, -3);
