@@ -20,16 +20,6 @@ const GLfloat cubenormals[] = {
 	0, 0,-1,   0, 0,-1,   0, 0,-1,   0, 0,-1    //back
 };
 
-//Default color gradient color for cubes
-const GLfloat cubecolors[] = {
-	1, 1, 1,   1, 1, 0,   1, 0, 0,   1, 0, 1,   //front
-	1, 1, 1,   1, 0, 1,   0, 0, 1,   0, 1, 1,   //right
-	1, 1, 1,   0, 1, 1,   0, 1, 0,   1, 1, 0,   //top
-	1, 1, 0,   0, 1, 0,   0, 0, 0,   1, 0, 0,   //left
-	0, 0, 0,   0, 0, 1,   1, 0, 1,   1, 0, 0,   //bottom
-	0, 0, 1,   0, 0, 0,   0, 1, 0,   0, 1, 1    //back
-};
-
 const GLubyte cubeindices[] = {
 	0, 1, 2,   2, 3, 0,      					//front
 	4, 5, 6,   6, 7, 4,      					//right
@@ -96,38 +86,26 @@ int l_graphics_drawcube(lua_State *L){
 	float size = lua_tonumber(L, -1);
 
 	//Uses glDrawElements for efficient vertex array rendering
-	//Uncomment GL_COLOR_ARRAY stuff for test gradient rendering
 	glEnableClientState(GL_NORMAL_ARRAY);
-	//glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glNormalPointer(GL_FLOAT, 0, cubenormals);
-	//glColorPointer(3, GL_FLOAT, 0, cubecolors);
 	glVertexPointer(3, GL_FLOAT, 0, cubevertices);
 
 	glPushMatrix();
+	//Opengl Transforms work from bottom to top.
 	glScalef(size / 2, size / 2, size / 2);
-	glTranslatef(0, 0, 0);
+	glTranslatef(x, y, z);
 	glRotatef(orx, 1, 0, 0);
 	glRotatef(ory, 0, 1, 0);
 	glRotatef(orz, 0, 0, 1);
-	glTranslatef(x, y, z);
-	//glRotatef(orx, 1, 0, 0);
-	//glRotatef(ory, -sin(orz), cos(orz), 0);
-	//glRotatef(orz, 0, 0, 1);
-	//glRotatef(rota->angle, rota->x, rota->y, rota->z);
+	glTranslatef(0, 0, 0);
 
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, cubeindices);
 
 	glPopMatrix();
 
 	glDisableClientState(GL_VERTEX_ARRAY);
-	//glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_NORMAL_ARRAY);
-
-	//Clean up rotation data for next object
-	//orx = 0;
-	//ory = 0;
-	//orz = 0;
 
 	return 0;
 }
@@ -181,8 +159,6 @@ int l_graphics_rotate(lua_State *L){
 	orx = lua_tonumber(L, -3);
 	ory = lua_tonumber(L, -2);
 	orz = lua_tonumber(L, -1);
-	//quaternion_new_set_fromeuler(rotq, orx, ory, orz);
-	//quaternion_getaxisangle(rotq, rota);
 	return 0;
 }
 
@@ -238,22 +214,11 @@ int l_graphics_getbackgroundcolor(lua_State *L){
 	return 3;
 }
 
-/**void wasd(float dt){
-	//trx += 0.001f * dt;
-	trx = 180.2;
-	quaternion_new_set_fromeuler(rotq, trx, try, trz);
-	quaternion_getaxisangle(rotq, rota);
-	//quaternion_print(rotq);
-	printf("AxisAngle: [%f, %f, %f, %f]\n", rota->angle, rota->x, rota->y, rota->z);
-}**/
-
 //////////////////////////////////////////////////////
 /**void l_graphics_initialize(){
-	rotq = quaternion();
-	rota = axisangle();
+
 }
 
 void l_graphics_shutdown(){
-	free(rota);
-	free(rotq);
+
 }**/

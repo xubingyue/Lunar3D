@@ -6,8 +6,6 @@
 #include "lua.h"
 #include "lauxlib.h"
 
-//#include "quaternion.h"
-
 //GLFW Libraries
 #include <GLFW/glfw3.h>
 
@@ -15,9 +13,6 @@
 
 const GLfloat cubevertices[72], cubenormals[72], cubecolors[72];
 const GLubyte cubeindices[36];
-
-//Quaternion* rotq;
-//AxisAngle* rota;
 
 GLfloat cx, cy, cz, crx, cry, crz;
 

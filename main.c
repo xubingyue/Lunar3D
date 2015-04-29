@@ -1,8 +1,5 @@
 #include "main.h"
 
-//Quaternion* q;
-//AxisAngle* a;
-
 int l_test(lua_State *L){
 	printf("C func called from lua");
 	return 0;
@@ -41,13 +38,6 @@ int main(int argc, char *argv[]){
 
 	lastFrame = glfwGetTime();
 
-	//q = quaternion();
-	//q = quaternion();
-	//a = axisangle();
-	//quaternion_new_set_fromeuler(q, 0, 0, 0);
-
-	//a = axisangle();
-
 	while(!glfwWindowShouldClose(window)){
 		//delta time
 		deltatime();
@@ -60,9 +50,6 @@ int main(int argc, char *argv[]){
 		glMatrixMode(0x0BA7); //GL_PROJECTION_MATRIX const, because C is a pain in the arse
 		glLoadIdentity();
 		gluPerspective(60, (double)width / (double)height, 0.1, 100);
-		//quaternion_new_set_fromeuler(q, crx, cry, crz);
-		//quaternion_getaxisangle(q, a);
-		//glRotated(a->angle, a->x, a->y, a->z);
 
 		glRotated(crx, 1, 0, 0);
 		glRotated(cry, 0, 1, 0);
