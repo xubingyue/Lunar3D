@@ -67,19 +67,19 @@ int main(int argc, char *argv[]){
 		glMatrixMode(GL_MODELVIEW_MATRIX);
 
 		//call update function
-		lua_getglobal(L, "lunar");
+		/*lua_getglobal(L, "lunar");
 		lua_pushstring(L, "update");
 		lua_gettable(L, -2);
 
-		//lua_pushnumber(L, dt);
-		lua_pcall(L, 0, 0, 0);
+		lua_pushnumber(L, dt);
+		lua_pcall(L, 1, 0, 0);
 
 		//call draw function
 		lua_getglobal(L, "lunar");
 		lua_pushstring(L, "draw");
 		lua_gettable(L, -2);
 
-		lua_pcall(L, 0, 0, 0);
+		lua_pcall(L, 0, 0, 0);*/
 
 		glfwSwapBuffers(window);
 

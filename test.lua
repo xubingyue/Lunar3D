@@ -35,7 +35,6 @@ function lunar.load()
 end
 
 function lunar.update(dt)
-	dt = 0.001
 	if lunar.keyboard.isDown("w") then
         z = z + math.cos(ry / 180 * math.pi) * dt * ms
         x = x - math.sin(ry / 180 * math.pi) * dt * ms
