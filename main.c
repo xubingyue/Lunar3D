@@ -44,6 +44,8 @@ int main(int argc, char *argv[]){
 
 	lua_pcall(L, 0, 0, 0);
 
+	lua_remove(L, -1); //remove load function from stack
+
 	while(!glfwWindowShouldClose(window)){
 		//delta time
 		deltatime();
@@ -81,6 +83,12 @@ int main(int argc, char *argv[]){
 
 		lua_pcall(L, 0, 0, 0);
 
+		//Removes the update and draw functions from the stack.
+		//If this is not done, they will pile up at an alarming rate
+		//and hastily crash the game
+		lua_remove(L, -1);
+		lua_remove(L, -1);
+
 		glfwSwapBuffers(window);
 
 		glfwPollEvents();
@@ -94,6 +102,19 @@ void deltatime(){
 	currentFrame = glfwGetTime();
 	dt = currentFrame - lastFrame;
 	lastFrame = currentFrame;
+}
+
+//Call this to print the number of objects present on the Lua stack for debugging
+void teststack(lua_State *L){
+	int num = 0;
+	int i;
+	int top = lua_gettop(L);
+
+	for(i = 1; i <= top; i++){
+		num++;
+	}
+
+	printf("Stack objects: %i\n", num);
 }
 
 void glPerspective(double fovY, double aspect, double zNear, double zFar){
