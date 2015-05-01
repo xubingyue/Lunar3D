@@ -1,13 +1,5 @@
 #include "luautils.h"
 
-/*
- * luautils.c
- *
- *  Created on: 27/04/2015
- *      Author: Ryan
- */
-
-
 // String library
 
 // lunar.utils.stringSplit(string, split)

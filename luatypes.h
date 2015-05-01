@@ -8,6 +8,7 @@
 #include <limits.h>
 
 static int newdrawable();
+static int setdrawableid();
 static int setdrawable();
 static int getdrawable();
 int drawabletostring();

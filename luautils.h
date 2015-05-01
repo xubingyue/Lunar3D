@@ -1,10 +1,3 @@
-/*
- * luautils.h
- *
- *  Created on: 27/04/2015
- *      Author: Ryan
- */
-
 #pragma once
 
 #include "lua.h"

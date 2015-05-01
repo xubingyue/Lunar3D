@@ -1,3 +1,5 @@
+require("testrequire")
+
 local ms = 5 --movement units per second
 
 local x = 0.0
@@ -12,8 +14,7 @@ cry = 0.0
 crz = 0.0
 
 a = lunar.drawable.new()
-a:set(2)
-print(a:get())
+print(lunar.drawable)
 
 function lunar.load()
 	local bob = lunar.utils.stringSplit("hi_ho_he", "_")

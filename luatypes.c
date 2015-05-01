@@ -1,8 +1,8 @@
 #include "luatypes.h"
 
-typedef struct Drawable {
+typedef struct l_Drawable {
 	unsigned int index; //A single int pointing to a drawable stored in a C table
-} Drawable;
+} l_Drawable;
 
 static const struct luaL_Reg drawablelib_f[] = { //functions - ie. not object-oriented
 		{"new", newdrawable},
@@ -11,28 +11,40 @@ static const struct luaL_Reg drawablelib_f[] = { //functions - ie. not object-or
 
 static const struct luaL_Reg drawablelib_m[] = { //methods
 		{"__tostring", drawabletostring},
-		{"set", setdrawable},
-		{"get", getdrawable},
+		{"setID", setdrawableid},
+		{"setData", setdrawable},
+		{"getData", getdrawable},
 		{NULL, NULL}
 };
 
-static Drawable *checkdrawable(lua_State *L){
+static l_Drawable *checkdrawable(lua_State *L){
 	void *ud = luaL_checkudata(L, 1, "__drawablemetatable");
 	luaL_argcheck(L, ud != NULL, 1, "'array' expected");
-	return (Drawable *)ud;
+	return (l_Drawable *)ud;
 }
 
 //Create a new blank drawable userdata object
 static int newdrawable(lua_State *L){
-	size_t nbytes = sizeof(Drawable);                     //Obtain the size of the drawable
-	Drawable *a = (Drawable *)lua_newuserdata(L, nbytes); //Create a userdata object
-	luaL_getmetatable(L, "__drawablemetatable");             //Get the metatable that we created
+	size_t nbytes = sizeof(l_Drawable);                     //Obtain the size of the drawable
+	l_Drawable *a = (l_Drawable *)lua_newuserdata(L, nbytes); //Create a userdata object
+	luaL_getmetatable(L, "__drawablemetatable");          //Get the metatable that we created
 	lua_setmetatable(L, -2);                              //Set as the metatable of the userdata
 	return 1;
 }
 
+static int setdrawableid(lua_State *L){
+	l_Drawable *a = checkdrawable(L);
+	int index = lua_tonumber(L, -1);
+
+	luaL_argcheck(L, a != NULL, 1, "'array' expected");
+	luaL_argcheck(L, 1 <= index && index <= UINT_MAX, 2, "index out of range");
+
+	a->index = index;
+	return 0;
+}
+
 static int setdrawable(lua_State *L){
-	Drawable *a = checkdrawable(L);
+	l_Drawable *a = checkdrawable(L);
 	int index = lua_tonumber(L, -1);
 
 	luaL_argcheck(L, a != NULL, 1, "'array' expected");
@@ -43,7 +55,7 @@ static int setdrawable(lua_State *L){
 }
 
 static int getdrawable(lua_State *L){
-	Drawable *a = checkdrawable(L);
+	l_Drawable *a = checkdrawable(L);
 
 	luaL_argcheck(L, a != NULL, 1, "'array' expected");
 
@@ -52,7 +64,7 @@ static int getdrawable(lua_State *L){
 }
 
 int drawabletostring(lua_State *L){
-	Drawable *a = checkdrawable(L);
+	l_Drawable *a = checkdrawable(L);
 	lua_pushfstring(L, "drawable(%i)", a->index);
 	return 1;
 }
