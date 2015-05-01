@@ -1,8 +1,7 @@
-/*
- * lunarrenderer.h
- *
- *  Created on: 29/04/2015
- *      Author: Ryan
- */
-
 #pragma once
+
+enum{
+	LUNAR_IMMEDIATE,
+	LUNAR_VERTEX_ARRAY,
+	LUNAR_VERTEX_BUFFER_OBJECT
+};
