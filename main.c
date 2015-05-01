@@ -1,10 +1,5 @@
 #include "main.h"
 
-int l_test(lua_State *L){
-	printf("C func called from lua");
-	return 0;
-}
-
 int main(int argc, char *argv[]){
 	//LUA STUFF
 	//initalize the state
