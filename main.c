@@ -46,6 +46,18 @@ int main(int argc, char *argv[]){
 
 	lua_remove(L, -1); //remove load function from stack
 
+	IntArray *ia = newIntArray();
+
+	intArrayInsert(ia, 0);
+	intArrayInsert(ia, 1);
+	intArrayInsert(ia, 2);
+
+	int i;
+
+	for(i = 0; i < intArraySize(ia); i++){
+		printf("%i\n", ia->array[i]);
+	}
+
 	while(!glfwWindowShouldClose(window)){
 		//delta time
 		deltatime();

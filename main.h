@@ -15,6 +15,8 @@
 //C files
 #include "luafunctions.h"
 
+#include "dynarray.h"
+
 float ratio, currentFrame, deltaTime, lastFrame;
 int width, height;
 float dt;
